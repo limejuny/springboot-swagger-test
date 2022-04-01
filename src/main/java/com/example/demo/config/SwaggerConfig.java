@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         .apiInfo(apiInfo())
         .useDefaultResponseMessages(false)
         .select()
-        .apis(RequestHandlerSelectors.basePackage("com.example.demo.controller"))
+        .apis(RequestHandlerSelectors.basePackage("com.example.demo.api"))
         .paths(PathSelectors.any())
         .build();
   }
