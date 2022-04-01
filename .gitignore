@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+
+spring-boot-h2-db.mv.db

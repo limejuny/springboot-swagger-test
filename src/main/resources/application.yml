@@ -1,0 +1,71 @@
+spring:
+  profiles:
+    active: local
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    # hikari:
+    #   maximumPoolSize: 10
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    properties:
+      hibernate:
+        default_batch_fetch_size: 1000
+        format_sql: true
+        show_sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+jwt:
+  secret-key: 95527733-25a0-413e-8c75-432703ed5e70
+
+---
+spring:
+  profiles: local
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./spring-boot-h2-db;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    # url: jdbc:mariadb://127.0.0.1:3306/testdb
+    username: user
+    password: pass
+  jpa:
+    database: h2
+    defer-datasource-initialization: true
+    hibernate:
+      dialect: org.hibernate.dialect.MariaDB103Dialect
+      ddl-auto: update
+  devtools:
+    restart:
+      exclude: build/**
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mariadb://${DB_HOSTNAME:mariadb}:${DB_PORT:3306}/${DB_DATABASE:testdb}
+    username: ${DB_USER:user}
+    password: ${DB_PASSWORD:pass}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  devtools:
+    restart:
+      exclude: build/**
+
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mariadb://${DB_HOSTNAME:mariadb}:${DB_PORT:3306}/${DB_DATABASE:proddb}
+    username: ${DB_USER:user}
+    password: ${DB_PASSWORD:pass}
+  jpa:
+    hibernate:
+      ddl-auto: validate
