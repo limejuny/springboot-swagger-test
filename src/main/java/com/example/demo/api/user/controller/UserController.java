@@ -2,7 +2,6 @@ package com.example.demo.api.user.controller;
 
 import com.example.demo.api.user.dto.UserSignupReq;
 import com.example.demo.api.user.dto.UserSignupRes;
-import com.example.demo.api.user.entity.UserEntity;
 import com.example.demo.api.user.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
