@@ -1,5 +1,7 @@
 package com.example.demo.api.post.controller;
 
+import javax.validation.Valid;
+
 import com.example.demo.api.post.dto.PostSaveReq;
 import com.example.demo.api.post.dto.PostSaveRes;
 import com.example.demo.api.post.service.PostService;
@@ -32,7 +34,7 @@ public class PostController {
   })
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping(value = "", produces = "application/json", consumes = "application/json")
-  public PostSaveRes createPost(@RequestBody PostSaveReq postSaveReq) {
+  public PostSaveRes createPost(@Valid @RequestBody PostSaveReq postSaveReq) {
     return postService.createPost(postSaveReq);
   }
 
