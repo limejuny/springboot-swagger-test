@@ -1,9 +1,10 @@
 package com.example.demo.api.user.controller;
 
-import com.example.demo.api.user.entity.User;
+import com.example.demo.api.user.dto.UserSignupReq;
+import com.example.demo.api.user.dto.UserSignupRes;
+import com.example.demo.api.user.entity.UserEntity;
 import com.example.demo.api.user.service.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,25 +14,24 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
 @Api(tags = { "유저 관련 컨트롤러" })
 public class UserController {
 
-  @Autowired
-  UserService userService;
+  private final UserService userService;
 
-  @ApiOperation(value = "간단하게 표시되는 내용", notes = "API 설명설명")
+  @ApiOperation(value = "회원가입", notes = "API 설명설명")
   @ApiResponses({
       @ApiResponse(code = 200, message = "로그인 성공"),
       @ApiResponse(code = 401, message = "로그인 실패")
   })
   @PostMapping(value = "/signup", produces = "application/json", consumes = "application/json")
-  public String signup(
-      @RequestBody User user) {
-    userService.save(user);
-    return "save";
+  public UserSignupRes signup(@RequestBody UserSignupReq user) {
+    return userService.signup(user);
   }
 
 }

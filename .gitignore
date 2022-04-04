@@ -37,3 +37,4 @@ out/
 .vscode/
 
 spring-boot-h2-db.mv.db
+spring-boot-h2-db.trace.db
