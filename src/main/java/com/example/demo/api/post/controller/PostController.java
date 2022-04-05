@@ -1,12 +1,17 @@
 package com.example.demo.api.post.controller;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import javax.validation.Valid;
 
+import com.example.demo.api.post.dto.PostInfoRes;
 import com.example.demo.api.post.dto.PostSaveReq;
 import com.example.demo.api.post.dto.PostSaveRes;
 import com.example.demo.api.post.service.PostService;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +38,18 @@ public class PostController {
       @ApiResponse(code = 400, message = "잘못된 요청")
   })
   @ResponseStatus(HttpStatus.CREATED)
-  @PostMapping(value = "", produces = "application/json", consumes = "application/json")
+  @PostMapping(value = "")
   public PostSaveRes createPost(@Valid @RequestBody PostSaveReq postSaveReq) {
     return postService.createPost(postSaveReq);
+  }
+
+  @ApiOperation(value = "게시글 목록 조회", notes = "게시글 목록 조회")
+  @ApiResponses({
+      @ApiResponse(code = 200, message = "조회 성공"),
+  })
+  @GetMapping(value = "")
+  public List<PostInfoRes> retrievePostInfoList() {
+    return postService.retrievePostInfoList();
   }
 
 }

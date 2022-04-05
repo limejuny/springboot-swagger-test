@@ -28,7 +28,7 @@ public class UserController {
       @ApiResponse(code = 200, message = "로그인 성공"),
       @ApiResponse(code = 401, message = "로그인 실패")
   })
-  @PostMapping(value = "/signup", produces = "application/json", consumes = "application/json")
+  @PostMapping(value = "/signup")
   public UserSignupRes signup(@RequestBody UserSignupReq user) {
     return userService.signup(user);
   }
