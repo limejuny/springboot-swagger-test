@@ -2,7 +2,7 @@ package com.example.demo.api.user.service;
 
 import com.example.demo.api.user.dto.UserSignupReq;
 import com.example.demo.api.user.dto.UserSignupRes;
-import com.example.demo.api.user.entity.UserEntity;
+import com.example.demo.api.user.entity.UserMapper;
 import com.example.demo.api.user.repository.UserRepository;
 
 import org.springframework.stereotype.Service;
@@ -15,23 +15,10 @@ public class UserService {
 
   private final UserRepository userRepository;
 
+  private final UserMapper userMapper;
+
   public UserSignupRes signup(UserSignupReq user) {
-    return toUserSignupRes(userRepository.save(toUserEntity(user)));
-  }
-
-  private UserEntity toUserEntity(UserSignupReq userSignupReq) {
-    return UserEntity.builder()
-        .userId(userSignupReq.getUserId())
-        .userName(userSignupReq.getUserName())
-        .userPasswd(userSignupReq.getUserPasswd())
-        .build();
-  }
-
-  private UserSignupRes toUserSignupRes(UserEntity userEntity) {
-    return UserSignupRes.builder()
-        .userId(userEntity.getUserId())
-        .userName(userEntity.getUserName())
-        .build();
+    return userMapper.toUserSignupRes(userRepository.save(userMapper.toUserEntity(user)));
   }
 
 }
