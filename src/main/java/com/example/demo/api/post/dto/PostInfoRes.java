@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "게시글 목록 조회 응답 DTO")
 public class PostInfoRes {
 
   @NotNull

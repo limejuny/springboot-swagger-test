@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "회원가입 요청 DTO")
 public class UserSignupReq {
 
   @NotNull

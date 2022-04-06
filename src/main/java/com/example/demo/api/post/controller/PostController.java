@@ -7,6 +7,7 @@ import com.example.demo.api.post.dto.PostSaveReq;
 import com.example.demo.api.post.dto.PostSaveRes;
 import com.example.demo.api.post.service.PostService;
 
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -48,7 +49,7 @@ public class PostController {
       @ApiResponse(responseCode = "200", description = "조회 성공"),
   })
   @GetMapping
-  public Page<PostInfoRes> retrievePostInfoList(Pageable pageable) {
+  public Page<PostInfoRes> retrievePostInfoList(@ParameterObject Pageable pageable) {
     return postService.retrievePostInfoList(pageable);
   }
 

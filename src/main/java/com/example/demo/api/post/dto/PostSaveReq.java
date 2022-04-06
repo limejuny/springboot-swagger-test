@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "게시글 등록 요청 DTO")
 public class PostSaveReq {
 
   @NotNull
