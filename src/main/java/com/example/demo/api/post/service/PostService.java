@@ -1,13 +1,13 @@
 package com.example.demo.api.post.service;
 
-import java.util.List;
-
 import com.example.demo.api.post.dto.PostInfoRes;
 import com.example.demo.api.post.dto.PostSaveReq;
 import com.example.demo.api.post.dto.PostSaveRes;
 import com.example.demo.api.post.entity.PostMapper;
 import com.example.demo.api.post.repository.PostRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +25,8 @@ public class PostService {
   }
 
   @Transactional(readOnly = true)
-  public List<PostInfoRes> retrievePostInfoList() {
-    return postMapper.toPostInfoResList(postRepository.findAll());
+  public Page<PostInfoRes> retrievePostInfoList(Pageable pageable) {
+    return postRepository.findAll(pageable).map(postMapper::toPostInfoRes);
   }
 
 }

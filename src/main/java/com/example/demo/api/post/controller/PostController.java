@@ -1,7 +1,5 @@
 package com.example.demo.api.post.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import com.example.demo.api.post.dto.PostInfoRes;
@@ -9,6 +7,8 @@ import com.example.demo.api.post.dto.PostSaveReq;
 import com.example.demo.api.post.dto.PostSaveRes;
 import com.example.demo.api.post.service.PostService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,8 +48,8 @@ public class PostController {
       @ApiResponse(responseCode = "200", description = "조회 성공"),
   })
   @GetMapping
-  public List<PostInfoRes> retrievePostInfoList() {
-    return postService.retrievePostInfoList();
+  public Page<PostInfoRes> retrievePostInfoList(Pageable pageable) {
+    return postService.retrievePostInfoList(pageable);
   }
 
 }
