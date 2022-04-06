@@ -13,6 +13,8 @@ public interface PostMapper {
 
   PostSaveRes toPostSaveRes(PostEntity postEntity);
 
+  PostInfoRes toPostInfoRes(PostEntity postEntity);
+
   List<PostInfoRes> toPostInfoResList(List<PostEntity> postEntityList);
 
   PostEntity toPostEntity(PostSaveReq postSaveReq);

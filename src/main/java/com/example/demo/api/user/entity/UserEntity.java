@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,15 +28,15 @@ public class UserEntity implements Serializable {
 
   @Id
   @Column(name = "USER_ID")
-  @ApiModelProperty(value = "유저 아이디", required = true, example = "testID")
+  @Schema(description = "유저 아이디", required = true, example = "testID")
   private String userId;
 
   @Column(name = "USER_NM")
-  @ApiModelProperty(value = "유저 이름", example = "testname")
+  @Schema(description = "유저 이름", example = "testname")
   private String userName;
 
   @Column(name = "USER_PWD")
-  @ApiModelProperty(value = "유저 비밀번호", example = "password")
+  @Schema(description = "유저 비밀번호", example = "password")
   private String userPasswd;
 
 }

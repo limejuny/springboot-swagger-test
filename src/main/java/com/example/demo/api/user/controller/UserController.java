@@ -9,24 +9,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
-@Api(tags = { "유저 관련 컨트롤러" })
+@Tag(name = "유저 관련 컨트롤러")
 public class UserController {
 
   private final UserService userService;
 
-  @ApiOperation(value = "회원가입", notes = "API 설명설명")
+  @Operation(summary = "회원가입", description = "회원가입 API 설명")
   @ApiResponses({
-      @ApiResponse(code = 200, message = "로그인 성공"),
-      @ApiResponse(code = 401, message = "로그인 실패")
+      @ApiResponse(responseCode = "200", description = "로그인 성공"),
+      @ApiResponse(responseCode = "401", description = "로그인 실패", content = @Content)
   })
   @PostMapping(value = "/signup")
   public UserSignupRes signup(@RequestBody UserSignupReq user) {

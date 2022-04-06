@@ -9,6 +9,7 @@ import com.example.demo.api.post.entity.PostMapper;
 import com.example.demo.api.post.repository.PostRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,7 @@ public class PostService {
     return postMapper.toPostSaveRes(postRepository.save(postMapper.toPostEntity(postSaveReq)));
   }
 
+  @Transactional(readOnly = true)
   public List<PostInfoRes> retrievePostInfoList() {
     return postMapper.toPostInfoResList(postRepository.findAll());
   }
